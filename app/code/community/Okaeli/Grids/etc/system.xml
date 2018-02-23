@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Okaeli_Grids  Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 3
+ * that is bundled with this package in the file LICENSE
+ *
+ * @category Okaeli
+ * @package Okaeli_Grids
+ * @copyright  Copyright (c)  2018 Julien Loizelet
+ * @author     Julien Loizelet <julienloizelet@okaeli.com>
+ * @license    GNU GENERAL PUBLIC LICENSE Version 3
+ *
+ */
+
+ /**
+ *
+ * @category Okaeli
+ * @package  Okaeli_Grids
+ * @module   Grids
+ * @author   Julien Loizelet <julienloizelet@okaeli.com>
+ *
+ */
+ -->
+<config>
+    <tabs>
+        <okaeli>
+            <label>Okaeli</label>
+            <sort_order>1000</sort_order>
+        </okaeli>
+    </tabs>
+    <sections>
+        <okaeli_grids translate="label" module="okaeli_grids">
+            <label>Okaeli Grids</label>
+            <tab>okaeli</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <groups>
+                <general translate="label,comment" module="okaeli_grids">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable All Grids Features</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', feature will be disabled for all grids.]]></comment>
+                        </enabled>
+                        <debug translate="label,comment" module="okaeli_grids">
+                            <label>Debug</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If enabled, check okaeli_grids_debug.log file. Should be off in production.]]></comment>
+                        </debug>
+                    </fields>
+                </general>
+                <product translate="label,comment" module="okaeli_grids">
+                    <label>Product</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable Product Grid Feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', your product grid won't be modified.]]></comment>
+                        </enabled>
+                        <attribute_column translate="label,comment" module="okaeli_grids">
+                            <label>Column(s) settings</label>
+                            <frontend_model>okaeli_grids/adminhtml_config_attribute_column_product</frontend_model>
+                            <backend_model>okaeli_grids/adminhtml_system_config_backend_attribute_column</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </attribute_column>
+                    </fields>
+                </product>
+                <customer translate="label,comment" module="okaeli_grids">
+                    <label>Customer</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable Customer Grid Feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', your customer grid won't be modified.]]></comment>
+                        </enabled>
+                        <attribute_column translate="label,comment" module="okaeli_grids">
+                            <label>Column(s) settings</label>
+                            <frontend_model>okaeli_grids/adminhtml_config_attribute_column_customer</frontend_model>
+                            <backend_model>okaeli_grids/adminhtml_system_config_backend_attribute_column</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </attribute_column>
+                    </fields>
+                </customer>
+                <order translate="label,comment" module="okaeli_grids">
+                    <label>Order</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable Order Grid Feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', your order grid won't be modified.]]></comment>
+                        </enabled>
+                        <attribute_column translate="label,comment" module="okaeli_grids">
+                            <label>Column(s) settings</label>
+                            <frontend_model>okaeli_grids/adminhtml_config_attribute_column_order</frontend_model>
+                            <backend_model>okaeli_grids/adminhtml_system_config_backend_attribute_column</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </attribute_column>
+                    </fields>
+                </order>
+                <cms_page translate="label,comment" module="okaeli_grids">
+                    <label>Cms Page</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable Cms Page Grid Feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', your cms page grid won't be modified.]]></comment>
+                        </enabled>
+                        <attribute_column translate="label,comment" module="okaeli_grids">
+                            <label>Column(s) settings</label>
+                            <frontend_model>okaeli_grids/adminhtml_config_attribute_column_cms_page</frontend_model>
+                            <backend_model>okaeli_grids/adminhtml_system_config_backend_attribute_column</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </attribute_column>
+                    </fields>
+                </cms_page>
+                <cms_block translate="label,comment" module="okaeli_grids">
+                    <label>Cms Block</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>60</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <fields>
+                        <enabled translate="label,comment" module="okaeli_grids">
+                            <label>Enable Cms Block Grid Feature</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <comment><![CDATA[If 'No', your cms block grid won't be modified.]]></comment>
+                        </enabled>
+                        <attribute_column translate="label,comment" module="okaeli_grids">
+                            <label>Column(s) settings</label>
+                            <frontend_model>okaeli_grids/adminhtml_config_attribute_column_cms_block</frontend_model>
+                            <backend_model>okaeli_grids/adminhtml_system_config_backend_attribute_column</backend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                        </attribute_column>
+                    </fields>
+                </cms_block>
+            </groups>
+        </okaeli_grids>
+    </sections>
+</config>

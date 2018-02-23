@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Okaeli_Grids  Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 3
+ * that is bundled with this package in the file LICENSE
+ *
+ * @category Okaeli
+ * @package Okaeli_Grids
+ * @copyright  Copyright (c)  2018 Julien Loizelet
+ * @author     Julien Loizelet <julienloizelet@okaeli.com>
+ * @license    GNU GENERAL PUBLIC LICENSE Version 3
+ *
+ */
+
+ /**
+ *
+ * @category Okaeli
+ * @package  Okaeli_Grids
+ * @module   Grids
+ * @author   Julien Loizelet <julienloizelet@okaeli.com>
+ *
+ */
+ -->
+<config>
+    <modules>
+        <Okaeli_Grids>
+            <version>0.0.1</version>
+        </Okaeli_Grids>
+    </modules>
+    <global>
+        <helpers>
+            <okaeli_grids>
+                <class>Okaeli_Grids_Helper</class>
+            </okaeli_grids>
+        </helpers>
+        <blocks>
+            <okaeli_grids>
+                <class>Okaeli_Grids_Block</class>
+            </okaeli_grids>
+        </blocks>
+        <models>
+            <okaeli_grids>
+                <class>Okaeli_Grids_Model</class>
+            </okaeli_grids>
+        </models>
+    </global>
+    <adminhtml>
+        <events>
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <okaeli_grids_grid_add_columns>
+                        <class>okaeli_grids/observer</class>
+                        <method>beforeBlockToHtml</method>
+                    </okaeli_grids_grid_add_columns>
+                </observers>
+            </core_block_abstract_to_html_before>
+            <eav_collection_abstract_load_before>
+                <observers>
+                    <okaeli_grids_collection_add_attribute_for_grid>
+                        <class>okaeli_grids/observer</class>
+                        <method>beforeEavCollectionLoad</method>
+                    </okaeli_grids_collection_add_attribute_for_grid>
+                </observers>
+            </eav_collection_abstract_load_before>
+        </events>
+    </adminhtml>
+</config>

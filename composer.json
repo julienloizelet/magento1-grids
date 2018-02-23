@@ -1,0 +1,26 @@
+{
+  "name": "okaeli/magento1-grids",
+  "type": "magento-module",
+  "license": "GPL-3.0",
+  "description": "Okaeli_Grids extension for Magento 1",
+  "homepage": "https://github.com/julienloizelet/magento1-grids",
+  "authors": [
+    {
+      "name": "Julien Loizelet",
+      "email": "julienloizelet@okaeli.com"
+    }
+  ],
+  "keywords": [
+    "magento",
+    "magento1",
+    "extension",
+    "modules",
+    "grids"
+  ],
+  "require": {
+    "php": " >= 5.3"
+  },
+  "suggest": {
+    "magento-hackathon/magento-composer-installer": "Makes it possible to manage this package as a dependency"
+  }
+}
