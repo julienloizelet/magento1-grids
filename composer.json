@@ -14,13 +14,14 @@
     "magento",
     "magento1",
     "extension",
-    "modules",
+    "module",
     "grids"
   ],
   "require": {
     "php": " >= 5.3"
   },
   "suggest": {
-    "magento-hackathon/magento-composer-installer": "Makes it possible to manage this package as a dependency"
+    "magento-hackathon/magento-composer-installer": "Makes it possible to manage this package as a dependency",
+    "code-x/xtest": "Integration tests based on PHPUnit"
   }
 }

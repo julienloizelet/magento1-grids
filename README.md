@@ -18,53 +18,28 @@
 `Okaeli_Grids` is a Magento 1 extension that allows to add column(s) in grid(s) after a specified column.
 
 Available grids are `product`, `order`, `customer`, `cms page` and `cms block` grids.
+
 Available new fields are the attributes of the model concerned by the grid.
 
-
-## Installation
-
-This extension can be installed with `modman` or `composer`.
-
-### Requirements
-
-- Magento >= 1.6 (probably much earlier, but I didn't test)
-
-### Modman
-
-Run `modman link /path/to/your/clone/of/this/repo` at root of your Magento Project
-(Initialize modman with `modman init` if necessary).
-
-
-### Composer
-
-In your `composer.json` file, add
-```
- {
-"type": "vcs",
-"url": "https://github.com/julienloizelet/magento1-grids"
- }
-```
-in the `repositories` part and
-```
-"okaeli/magento1-grids":"dev-master"
-```
-in the `require` part.
-
-
 ## Usage
+
+### Use cases
+
+- You just created a product attribute `my_awesome_attribute` and want to display it in product grid.
+- Someone asked you to add the `meta_description` data in the Cms Pages grid.
 
 ### Features
 
 - Foreach available grid, you can choose a new field to add. You can also set after which column this new column will appear.
 Finally, you can set the align style and width of the new column.
 
-![Okaeli Grids Product Config screenshot](doc/images/okaeli-grids-product-config-screen.png)
+![Okaeli Grids Product Config screenshot](doc/images/okaeli-grids-product-config-screen.jpg)
 
 - You can enable/disable each feature individually or enable/disable all at once.
 
 - There is a debug log feature that you can turn on/off as you wish.
 
-![Okaeli Grids General Config screenshot](doc/images/okaeli-grids-general-config-screen.png)
+![Okaeli Grids General Config screenshot](doc/images/okaeli-grids-general-config-screen.jpg)
 
 
 ### Configurations
@@ -73,36 +48,95 @@ This extension comes with some configurations :
 
 `System Configuration > Okaeli > Okaeli Grids`
 
-  **_General_**
+  * **_General_**
+    * Enable / Disable all features
+    * Enable / Disable debug log
+  * **_Product_**
+    * Enable / Disable Product Grid Feature
+    * Column(s) settings
+  * **_Customer_**
+    * Enable / Disable Customer Grid Feature
+    * Column(s) settings
+  * **_Order_**
+    * Enable / Disable Order Grid Feature
+    * Column(s) settings
+  * **_Cms Page_**
+    * Enable / Disable Cms Page Grid Feature
+    * Column(s) settings
+  * **_Cms Block_**
+    * Enable / Disable Cms Block Grid Feature
+    * Column(s) settings
 
-  * Enable / Disable all features
-  * Enable / Disable debug log
 
-  **_Product_**
+## Installation
 
-  * Enable / Disable Product Grid Feature
-  * Column(s) settings
+This extension can be installed with [modman](#modman), [composer](#composer) or [manually](#manually).
 
-  **_Customer_**
+### Requirements
 
-  * Enable / Disable Customer Grid Feature
-  * Column(s) settings
+- Magento < 2
 
-  **_Order_**
+Tested on `1.9.3.6` only but it should work on earlier versions.
 
-  * Enable / Disable Order Grid Feature
-  * Column(s) settings
+### Modman
 
-  **_Cms Page_**
+- Install [modman](https://github.com/colinmollenhour/modman).
+- From your Magento installation folder, run `modman init`.
+- Then
+  - Option 1)
+    ```
+    modman clone git@github.com:julienloizelet/magento1-grids.git
+    ```
 
-  * Enable / Disable Cms Page Grid Feature
-  * Column(s) settings
+  - Option 2) : clone this repo in `/path/to/your/clone/of/this/repo` and
+    ```
+    modman link /path/to/your/clone/of/this/repo
+    ```
 
-  **_Cms Block_**
+### Composer
 
-  * Enable / Disable Cms Block Grid Feature
-  * Column(s) settings
+- Install [composer](http://getcomposer.org/download/).
+- Modify your `composer.json` file :
 
+  - Option 1) : get the package from [Packagist](https://packagist.org/)
+    ```
+    "require": {
+      "okaeli/magento1-grids":"*"
+    }
+    ```
+
+  - Option 2) get the package from [Firegento](http://packages.firegento.com/)
+
+    ```
+    "require": {
+      "okaeli/magento1-grids":"*"
+    },
+    "repositories": [
+      {
+        "type": "composer",
+        "url": "https://packages.firegento.com"
+      }
+    ]
+    ```
+
+  - Option 3): get the package from [Github](https://github.com/).
+
+    ```
+    "require": {
+      "okaeli/magento1-grids":"dev-master"
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/julienloizelet/magento1-grids"
+      }
+    ]
+    ```
+- Then from your composer.json folder, run `php composer.phar install` or `composer install`.
+
+### Manually
+
+You can copy the files from the folders of this repository to the same folders of your installation.
 
 ## Technical Notes
 
@@ -115,26 +149,25 @@ This extension is **0 rewrite**  guaranteed. The following events are listened:
 
 ### Extension events
 
-If you want to add more complex field (e.g join with other tables), you should extend this extension and use some custom dispatched events :
+If you want to add more complex field (e.g join with other tables), you should extend this extension and/or use some custom dispatched events :
 
   * `okaeli_grids_column_add_before`, `okaeli_grids_column_add_after` : use it to add your own column
   * `okaeli_grids_eav_collection_after` : use it to join on eav collection.
 
 ### Integration Tests
 
-
 * Install first the `Codex_Xtest` extension : [find it here](https://github.com/code-x/magento-xtest)
 * Check that you retrieved the `tests` folder of this extension.
 * Set `active=true` in the `app/etc/modules/Codex_Xtest.xml` file. (Beware that this extension will rewrite the `core/resource` model)
 * To run all the test of the `Okaeli_Grids` extension, run the following command:
 ```
-$ cd tests/
-$ php phpunit.phar ../app/code/community/Okaeli/Grids/Test
+cd tests/
+php phpunit.phar ../app/code/community/Okaeli/Grids/Test
 ```
 * To run a specific test (for example tests for the product grid), run the following command:
 ```
-$ cd tests/
-$ php phpunit.phar ../app/code/community/Okaeli/Grids/Test/Integration/Admin/ProductGridTest.php
+cd tests/
+php phpunit.phar ../app/code/community/Okaeli/Grids/Test/Integration/Admin/ProductGridTest.php
 ```
 
 ### Coding Standards
@@ -144,15 +177,15 @@ You can find the output of the command `phpcs /path/to/Okaeli/Grids/sources --st
 
 ## Support
 
-
-If you encounter any problems or bugs, please create an issue on
-[GitHub](https://github.com/julienloizelet/magento1-grids/issues).
+If you encounter any problems/bugs or if you have an idea of a new feature, please read the ["How to submit an issue"](.github/ISSUE_TEMPLATE.md) file
+and create an issue on [GitHub](https://github.com/julienloizelet/magento1-grids/issues).
 
 ## Contribution
 
-
 Any contribution is highly welcome. The best possibility to provide any code is to open
 a [pull request on GitHub](https://help.github.com/articles/using-pull-requests).
+
+Please read the ["How to contribute"](.github/CONTRIBUTING.md) file.
 
 ## License
 
