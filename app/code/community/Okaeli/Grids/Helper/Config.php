@@ -40,6 +40,8 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
     const XML_PATH_CMS_PAGE_GRID_ATTRIBUTE = 'okaeli_grids/cms_page/attribute_column';
     const XML_PATH_CMS_BLOCK_GRID_ENABLED = 'okaeli_grids/cms_block/enabled';
     const XML_PATH_CMS_BLOCK_GRID_ATTRIBUTE = 'okaeli_grids/cms_block/attribute_column';
+    const XML_PATH_SUBSCRIBER_GRID_ENABLED = 'okaeli_grids/subscriber/enabled';
+    const XML_PATH_SUBSCRIBER_GRID_ATTRIBUTE = 'okaeli_grids/subscriber/attribute_column';
     /**
      * Log file and messages
      */
@@ -58,6 +60,7 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
     const ORDER_TYPE = 'order';
     const PAGE_TYPE = 'page';
     const BLOCK_TYPE = 'block';
+    const SUBSCRIBER_TYPE = 'subscriber';
     /**
      * Config `enabled`
      * @var array
@@ -101,6 +104,9 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
                     break;
                 case self::BLOCK_TYPE:
                     $typeEnabled = ($allEnabled) ? Mage::getStoreConfig(self::XML_PATH_CMS_BLOCK_GRID_ENABLED) : false;
+                    break;
+                case self::SUBSCRIBER_TYPE:
+                    $typeEnabled = ($allEnabled) ? Mage::getStoreConfig(self::XML_PATH_SUBSCRIBER_GRID_ENABLED) : false;
                     break;
                 default:
                     $typeEnabled = false;
@@ -159,6 +165,9 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
                     break;
                 case self::BLOCK_TYPE:
                     $attributeSetting = trim(Mage::getStoreConfig(self::XML_PATH_CMS_BLOCK_GRID_ATTRIBUTE));
+                    break;
+                case self::SUBSCRIBER_TYPE:
+                    $attributeSetting = trim(Mage::getStoreConfig(self::XML_PATH_SUBSCRIBER_GRID_ATTRIBUTE));
                     break;
                 default:
                     $attributeSetting = '';

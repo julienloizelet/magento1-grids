@@ -1,5 +1,6 @@
 # Okaeli_Grids
 
+
 --------------------
 ```
 @category   Okaeli  
@@ -13,11 +14,36 @@
 > How many times how you been asked to add some field in a grid ?
 > If your answer is _"too many times"_, then you may give a try to this extension.
 
+**Table of Contents**
+--------------------------
+
+  * [Description](#description)
+  * [Usage](#usage)
+     * [Use cases](#use-cases)
+     * [Features](#features)
+     * [Configurations](#configurations)
+  * [Installation](#installation)
+     * [Requirements](#requirements)
+     * [Modman](#modman)
+     * [Composer](#composer)
+     * [Manually](#manually)
+  * [Technical Notes](#technical-notes)
+     * [No rewrite. Events driven development.](#no-rewrite-events-driven-development)
+     * [Extension events](#extension-events)
+     * [Integration Tests](#integration-tests)
+     * [Coding Standards](#coding-standards)
+  * [Support](#support)
+  * [Contribution](#contribution)
+  * [License](#license)
+
+Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
+
+
 ## Description
 
 `Okaeli_Grids` is a Magento 1 extension that allows to add column(s) in grid(s) after a specified column.
 
-Available grids are `product`, `order`, `customer`, `cms page` and `cms block` grids.
+Available grids are `product`, `order`, `customer`, `cms page`, `cms block` and `newsletter subscriber` grids.
 
 Available new fields are the attributes of the model concerned by the grid.
 
@@ -66,6 +92,9 @@ This extension comes with some configurations :
   * **_Cms Block_**
     * Enable / Disable Cms Block Grid Feature
     * Column(s) settings
+  * **_Subscriber_**
+      * Enable / Disable Subscriber Grid Feature
+      * Column(s) settings
 
 
 ## Installation
@@ -98,14 +127,14 @@ Tested on `1.9.3.6` only but it should work on earlier versions.
 - Install [composer](http://getcomposer.org/download/).
 - Modify your `composer.json` file :
 
-  - Option 1) : get the package from [Packagist](https://packagist.org/)
+  - Option 1) : get the package from [Packagist](https://packagist.org/).
     ```
     "require": {
       "okaeli/magento1-grids":"*"
     }
     ```
 
-  - Option 2) get the package from [Firegento](http://packages.firegento.com/)
+  - Option 2) get the package from [Firegento](http://packages.firegento.com/).
 
     ```
     "require": {
@@ -151,14 +180,14 @@ This extension is **0 rewrite**  guaranteed. The following events are listened:
 
 If you want to add more complex field (e.g join with other tables), you should extend this extension and/or use some custom dispatched events :
 
-  * `okaeli_grids_column_add_before`, `okaeli_grids_column_add_after` : use it to add your own column
+  * `okaeli_grids_column_add_before`, `okaeli_grids_column_add_after` : use it to add your own column.
   * `okaeli_grids_eav_collection_after` : use it to join on eav collection.
 
 ### Integration Tests
 
-* Install first the `Codex_Xtest` extension : [find it here](https://github.com/code-x/magento-xtest)
+* Install first the `Codex_Xtest` extension : [find it here](https://github.com/code-x/magento-xtest).
 * Check that you retrieved the `tests` folder of this extension.
-* Set `active=true` in the `app/etc/modules/Codex_Xtest.xml` file. (Beware that this extension will rewrite the `core/resource` model)
+* Set `active=true` in the `app/etc/modules/Codex_Xtest.xml` file (Beware that this extension will rewrite the `core/resource` model).
 * To run all the test of the `Okaeli_Grids` extension, run the following command:
 ```
 cd tests/

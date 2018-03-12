@@ -69,6 +69,10 @@ class Okaeli_Grids_Helper_Data extends Okaeli_Grids_Helper_Config
                     /** @var Mage_Adminhtml_Block_Cms_Block_Grid $gridBlock */
                     $gridBlock = Mage::app()->getLayout()->createBlock('adminhtml/cms_block_grid');
                     break;
+                case self::SUBSCRIBER_TYPE:
+                    /** @var Mage_Adminhtml_Block_Newsletter_Subscriber_Grid $gridBlock */
+                    $gridBlock = Mage::app()->getLayout()->createBlock('adminhtml/newsletter_subscriber_grid');
+                    break;
                 default:
                     $gridBlock = false;
             }

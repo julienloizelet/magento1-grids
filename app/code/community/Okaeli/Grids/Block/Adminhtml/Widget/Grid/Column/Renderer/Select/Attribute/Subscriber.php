@@ -23,11 +23,11 @@
  * @author   Julien Loizelet <julienloizelet@okaeli.com>
  *
  */
-class Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute_Order extends
+class Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute_Subscriber extends
     Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute
 {
     /**
      * @var string
      */
-    protected $_tableAlias = Okaeli_Grids_Model_Observer::TABLE_ALIAS_ORDER;
+    protected $_tableAlias = Okaeli_Grids_Model_Observer::TABLE_ALIAS_SUBSCRIBER;
 }

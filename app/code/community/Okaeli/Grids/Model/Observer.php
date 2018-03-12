@@ -46,6 +46,7 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
     const TABLE_ALIAS_ORDER = 'sales/order';
     const TABLE_ALIAS_PAGE = 'cms/page';
     const TABLE_ALIAS_BLOCK = 'cms/block';
+    const TABLE_ALIAS_SUBSCRIBER = 'newsletter/subscriber';
 
     /**
      * Add column(s) in grid
@@ -72,6 +73,10 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
 
         if ($grid instanceof Mage_Adminhtml_Block_Cms_Block_Grid) {
             $this->_addAttributeToGrid($grid, Okaeli_Grids_Helper_Config::BLOCK_TYPE, true);
+        }
+
+        if ($grid instanceof Mage_Adminhtml_Block_Newsletter_Subscriber_Grid) {
+            $this->_addAttributeToGrid($grid, Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE, true);
         }
     }
 
@@ -119,9 +124,10 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
     protected function _addAttributeToGrid($grid, $type, $flat = false)
     {
         $helper = $this->_getHelper();
-        if ($helper->isEnabled($type)) {
-            $settings = $helper->getAttributesSettings($type);
-            if ($settings && is_array($settings)) {
+        try {
+            if ($helper->isEnabled($type) && ($settings = $helper->getAttributesSettings($type)) &&
+                is_array($settings)
+            ) {
                 foreach ($settings as $setting) {
                     if (isset($setting['attribute']) && isset($setting['after']) && isset($setting['align'])) {
                         $code = $setting['attribute'];
@@ -157,9 +163,12 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
                         $helper->debugLog(Okaeli_Grids_Helper_Config::LOG_MESSAGE_WRONG_SETTINGS);
                     }
                 }
+            } else {
+                $helper->debugLog(Okaeli_Grids_Helper_Config::LOG_MESSAGE_DISABLED);
             }
-        } else {
-            $helper->debugLog(Okaeli_Grids_Helper_Config::LOG_MESSAGE_DISABLED);
+        } catch (Exception $e) {
+            Mage::logException($e);
+            $helper->debugLog($e->getMessage());
         }
     }
 
@@ -173,9 +182,10 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
     protected function _addAttributeToCollection($collection, $type)
     {
         $helper = $this->_getHelper();
-        if ($helper->isEnabled($type)) {
-            $settings = $helper->getAttributesSettings($type);
-            if ($settings && is_array($settings)) {
+        try {
+            if ($helper->isEnabled($type) && ($settings = $helper->getAttributesSettings($type)) &&
+                is_array($settings)
+            ) {
                 foreach ($settings as $setting) {
                     if (isset($setting['attribute'])) {
                         $code = $setting['attribute'];
@@ -190,12 +200,13 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
                 }
 
                 Mage::dispatchEvent('okaeli_grids_eav_collection_after', array('collection' => $collection));
+            } else {
+                $helper->debugLog(Okaeli_Grids_Helper_Config::LOG_MESSAGE_DISABLED);
             }
-        } else {
-            $helper->debugLog(Okaeli_Grids_Helper_Config::LOG_MESSAGE_DISABLED);
+        } catch (Exception $e) {
+            Mage::logException($e);
+            $helper->debugLog($e->getMessage());
         }
-
-        return $collection;
     }
 
     /**
@@ -245,6 +256,9 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
                     break;
                 case Okaeli_Grids_Helper_Config::BLOCK_TYPE:
                     $tableAlias = self::TABLE_ALIAS_BLOCK;
+                    break;
+                case Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE:
+                    $tableAlias = self::TABLE_ALIAS_SUBSCRIBER;
                     break;
                 default:
                     $tableAlias = false;

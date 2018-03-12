@@ -132,6 +132,9 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
             case Okaeli_Grids_Helper_Config::BLOCK_TYPE:
                 $configPath = Okaeli_Grids_Helper_Config::XML_PATH_CMS_BLOCK_GRID_ENABLED;
                 break;
+            case Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE:
+                $configPath = Okaeli_Grids_Helper_Config::XML_PATH_SUBSCRIBER_GRID_ENABLED;
+                break;
             default:
                 $configPath = false;
         }
@@ -249,6 +252,14 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
                     self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
                 );
                 break;
+            case Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE:
+                $this->_changeMageConfig(
+                    Okaeli_Grids_Helper_Config::XML_PATH_SUBSCRIBER_GRID_ATTRIBUTE,
+                    'a:1:{s:18:"_1519906973139_139";a:4:{s:9:"attribute";s:11:"customer_id";' .
+                    's:5:"after";s:8:"lastname";' .
+                    self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
+                );
+                break;
             default:
                 break;
         }
@@ -302,6 +313,15 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
                     'a:1:{s:18:"_1519906973139_139";' .
                     'a:4:{s:9:"attribute";s:37:"here-is-a-non-existent-attribute-code";' .
                     's:5:"after";s:5:"title";' .
+                    self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
+                );
+                break;
+            case Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE:
+                $this->_changeMageConfig(
+                    Okaeli_Grids_Helper_Config::XML_PATH_SUBSCRIBER_GRID_ATTRIBUTE,
+                    'a:1:{s:18:"_1519906973139_139";' .
+                    'a:4:{s:9:"attribute";s:37:"here-is-a-non-existent-attribute-code";' .
+                    's:5:"after";s:8:"lastname";' .
                     self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
                 );
                 break;

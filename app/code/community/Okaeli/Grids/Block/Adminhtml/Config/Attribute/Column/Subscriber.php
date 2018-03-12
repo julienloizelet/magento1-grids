@@ -23,11 +23,17 @@
  * @author   Julien Loizelet <julienloizelet@okaeli.com>
  *
  */
-class Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute_Order extends
-    Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute
+class Okaeli_Grids_Block_Adminhtml_Config_Attribute_Column_Subscriber extends
+    Okaeli_Grids_Block_Adminhtml_Config_Attribute_Column
 {
     /**
      * @var string
      */
-    protected $_tableAlias = Okaeli_Grids_Model_Observer::TABLE_ALIAS_ORDER;
+    protected $_attributeRendererClass =
+        'okaeli_grids/adminhtml_widget_grid_column_renderer_select_attribute_subscriber';
+    /**
+     * @var string
+     */
+    protected $_afterRendererClass = 'okaeli_grids/adminhtml_widget_grid_column_renderer_select_after_subscriber';
+
 }

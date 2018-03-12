@@ -29,5 +29,5 @@ class Okaeli_Grids_Block_Adminhtml_Widget_Grid_Column_Renderer_Select_Attribute_
     /**
      * @var string
      */
-    protected $_tableAlias = 'cms/block';
+    protected $_tableAlias = Okaeli_Grids_Model_Observer::TABLE_ALIAS_BLOCK;
 }

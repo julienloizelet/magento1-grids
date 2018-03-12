@@ -27,9 +27,9 @@ FILE: ...magento1-grids/app/code/community/Okaeli/Grids/Helper/Config.php
 ----------------------------------------------------------------------
 FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 2 LINES
 ----------------------------------------------------------------------
- 136 | WARNING | The use of function print_r() is discouraged
- 136 | WARNING | The use of function print_r() is discouraged
- 167 | WARNING | The use of function unserialize() is discouraged
+ 142 | WARNING | The use of function print_r() is discouraged
+ 142 | WARNING | The use of function print_r() is discouraged
+ 176 | WARNING | The use of function unserialize() is discouraged
 ----------------------------------------------------------------------
 
 
@@ -57,5 +57,5 @@ FOUND 0 ERRORS AND 5 WARNINGS AFFECTING 4 LINES
     |         | discouraged
 ----------------------------------------------------------------------
 
-Time: 1.3 secs; Memory: 12Mb
+Time: 838ms; Memory: 12.75Mb
 
