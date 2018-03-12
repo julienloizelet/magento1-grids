@@ -61,6 +61,10 @@ class Okaeli_Grids_Helper_Data extends Okaeli_Grids_Helper_Config
                     /** @var Mage_Adminhtml_Block_Sales_Order_Grid $gridBlock */
                     $gridBlock = Mage::app()->getLayout()->createBlock('adminhtml/sales_order_grid');
                     break;
+                case self::INVOICE_TYPE:
+                    /** @var Mage_Adminhtml_Block_Sales_Invoice_Grid $gridBlock */
+                    $gridBlock = Mage::app()->getLayout()->createBlock('adminhtml/sales_invoice_grid');
+                    break;
                 case self::PAGE_TYPE:
                     /** @var Mage_Adminhtml_Block_Cms_Page_Grid $gridBlock */
                     $gridBlock = Mage::app()->getLayout()->createBlock('adminhtml/cms_page_grid');

@@ -126,6 +126,9 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
             case Okaeli_Grids_Helper_Config::ORDER_TYPE:
                 $configPath = Okaeli_Grids_Helper_Config::XML_PATH_ORDER_GRID_ENABLED;
                 break;
+            case Okaeli_Grids_Helper_Config::INVOICE_TYPE:
+                $configPath = Okaeli_Grids_Helper_Config::XML_PATH_INVOICE_GRID_ENABLED;
+                break;
             case Okaeli_Grids_Helper_Config::PAGE_TYPE:
                 $configPath = Okaeli_Grids_Helper_Config::XML_PATH_CMS_PAGE_GRID_ENABLED;
                 break;
@@ -236,6 +239,14 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
                     self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
                 );
                 break;
+            case Okaeli_Grids_Helper_Config::INVOICE_TYPE:
+                $this->_changeMageConfig(
+                    Okaeli_Grids_Helper_Config::XML_PATH_INVOICE_GRID_ATTRIBUTE,
+                    'a:1:{s:18:"_1519906973139_139";a:4:{s:9:"attribute";s:8:"store_id";' .
+                    's:5:"after";s:11:"grand_total";' .
+                    self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
+                );
+                break;
             case Okaeli_Grids_Helper_Config::PAGE_TYPE:
                 $this->_changeMageConfig(
                     Okaeli_Grids_Helper_Config::XML_PATH_CMS_PAGE_GRID_ATTRIBUTE,
@@ -295,6 +306,15 @@ abstract class Okaeli_Grids_Test_Integration_Admin_Abstract
                     'a:1:{s:18:"_1519906973139_139";' .
                     'a:4:{s:9:"attribute";s:37:"here-is-a-non-existent-attribute-code";' .
                     's:5:"after";s:13:"real_order_id";' .
+                    self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
+                );
+                break;
+            case Okaeli_Grids_Helper_Config::INVOICE_TYPE:
+                $this->_changeMageConfig(
+                    Okaeli_Grids_Helper_Config::XML_PATH_INVOICE_GRID_ATTRIBUTE,
+                    'a:1:{s:18:"_1519906973139_139";' .
+                    'a:4:{s:9:"attribute";s:37:"here-is-a-non-existent-attribute-code";' .
+                    's:5:"after";s:11:"grand_total";' .
                     self::CONFIG_ALIGN . self::CONFIG_WIDTH . '}}'
                 );
                 break;

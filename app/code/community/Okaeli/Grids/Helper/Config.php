@@ -36,6 +36,8 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
     const XML_PATH_CUSTOMER_GRID_ATTRIBUTE = 'okaeli_grids/customer/attribute_column';
     const XML_PATH_ORDER_GRID_ENABLED = 'okaeli_grids/order/enabled';
     const XML_PATH_ORDER_GRID_ATTRIBUTE = 'okaeli_grids/order/attribute_column';
+    const XML_PATH_INVOICE_GRID_ENABLED = 'okaeli_grids/invoice/enabled';
+    const XML_PATH_INVOICE_GRID_ATTRIBUTE = 'okaeli_grids/invoice/attribute_column';
     const XML_PATH_CMS_PAGE_GRID_ENABLED = 'okaeli_grids/cms_page/enabled';
     const XML_PATH_CMS_PAGE_GRID_ATTRIBUTE = 'okaeli_grids/cms_page/attribute_column';
     const XML_PATH_CMS_BLOCK_GRID_ENABLED = 'okaeli_grids/cms_block/enabled';
@@ -58,6 +60,7 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
     const PRODUCT_TYPE = 'product';
     const CUSTOMER_TYPE = 'customer';
     const ORDER_TYPE = 'order';
+    const INVOICE_TYPE = 'invoice';
     const PAGE_TYPE = 'page';
     const BLOCK_TYPE = 'block';
     const SUBSCRIBER_TYPE = 'subscriber';
@@ -98,6 +101,9 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
                     break;
                 case self::ORDER_TYPE:
                     $typeEnabled = ($allEnabled) ? Mage::getStoreConfig(self::XML_PATH_ORDER_GRID_ENABLED) : false;
+                    break;
+                case self::INVOICE_TYPE:
+                    $typeEnabled = ($allEnabled) ? Mage::getStoreConfig(self::XML_PATH_INVOICE_GRID_ENABLED) : false;
                     break;
                 case self::PAGE_TYPE:
                     $typeEnabled = ($allEnabled) ? Mage::getStoreConfig(self::XML_PATH_CMS_PAGE_GRID_ENABLED) : false;
@@ -159,6 +165,9 @@ class Okaeli_Grids_Helper_Config extends Mage_Core_Helper_Abstract
                     break;
                 case self::ORDER_TYPE:
                     $attributeSetting = trim(Mage::getStoreConfig(self::XML_PATH_ORDER_GRID_ATTRIBUTE));
+                    break;
+                case self::INVOICE_TYPE:
+                    $attributeSetting = trim(Mage::getStoreConfig(self::XML_PATH_INVOICE_GRID_ATTRIBUTE));
                     break;
                 case self::PAGE_TYPE:
                     $attributeSetting = trim(Mage::getStoreConfig(self::XML_PATH_CMS_PAGE_GRID_ATTRIBUTE));

@@ -66,6 +66,22 @@
                     </okaeli_grids_collection_add_attribute_for_grid>
                 </observers>
             </eav_collection_abstract_load_before>
+            <sales_order_grid_collection_load_before>
+                <observers>
+                    <okaeli_grids_collection_add_attribute_for_order_grid>
+                        <class>okaeli_grids/observer</class>
+                        <method>beforeOrderGridCollectionLoad</method>
+                    </okaeli_grids_collection_add_attribute_for_order_grid>
+                </observers>
+            </sales_order_grid_collection_load_before>
+            <sales_order_invoice_grid_collection_load_before>
+                <observers>
+                    <okaeli_grids_collection_add_attribute_for_invoice_grid>
+                        <class>okaeli_grids/observer</class>
+                        <method>beforeInvoiceGridCollectionLoad</method>
+                    </okaeli_grids_collection_add_attribute_for_invoice_grid>
+                </observers>
+            </sales_order_invoice_grid_collection_load_before>
         </events>
     </adminhtml>
 </config>

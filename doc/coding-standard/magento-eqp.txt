@@ -25,11 +25,22 @@ FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
 
 FILE: ...magento1-grids/app/code/community/Okaeli/Grids/Helper/Config.php
 ----------------------------------------------------------------------
-FOUND 0 ERRORS AND 3 WARNINGS AFFECTING 2 LINES
+FOUND 0 ERRORS AND 4 WARNINGS AFFECTING 3 LINES
 ----------------------------------------------------------------------
- 142 | WARNING | The use of function print_r() is discouraged
- 142 | WARNING | The use of function print_r() is discouraged
- 176 | WARNING | The use of function unserialize() is discouraged
+  87 | WARNING | Function's cyclomatic complexity (11) exceeds 10;
+     |         | consider refactoring the function
+ 148 | WARNING | The use of function print_r() is discouraged
+ 148 | WARNING | The use of function print_r() is discouraged
+ 185 | WARNING | The use of function unserialize() is discouraged
+----------------------------------------------------------------------
+
+
+FILE: ...s/magento1-grids/app/code/community/Okaeli/Grids/Helper/Data.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 42 | WARNING | Function's cyclomatic complexity (11) exceeds 10;
+    |         | consider refactoring the function
 ----------------------------------------------------------------------
 
 
@@ -41,6 +52,17 @@ FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 1 LINE
     |         | loop
  58 | WARNING | Array size calculation function count() detected in
     |         | loop
+----------------------------------------------------------------------
+
+
+FILE: ...agento1-grids/app/code/community/Okaeli/Grids/Model/Observer.php
+----------------------------------------------------------------------
+FOUND 0 ERRORS AND 2 WARNINGS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 131 | WARNING | Data access method JOINLEFT detected outside of
+     |         | Resource Model
+ 160 | WARNING | Data access method JOINLEFT detected outside of
+     |         | Resource Model
 ----------------------------------------------------------------------
 
 
@@ -57,5 +79,5 @@ FOUND 0 ERRORS AND 5 WARNINGS AFFECTING 4 LINES
     |         | discouraged
 ----------------------------------------------------------------------
 
-Time: 838ms; Memory: 12.75Mb
+Time: 1.03 secs; Memory: 13.75Mb
 

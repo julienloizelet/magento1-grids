@@ -47,6 +47,7 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
     const TABLE_ALIAS_PAGE = 'cms/page';
     const TABLE_ALIAS_BLOCK = 'cms/block';
     const TABLE_ALIAS_SUBSCRIBER = 'newsletter/subscriber';
+    const TABLE_ALIAS_INVOICE = 'sales/invoice';
 
     /**
      * Add column(s) in grid
@@ -65,6 +66,10 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
 
         if ($grid instanceof Mage_Adminhtml_Block_Sales_Order_Grid) {
             $this->_addAttributeToGrid($grid, Okaeli_Grids_Helper_Config::ORDER_TYPE, true);
+        }
+
+        if ($grid instanceof Mage_Adminhtml_Block_Sales_Invoice_Grid) {
+            $this->_addAttributeToGrid($grid, Okaeli_Grids_Helper_Config::INVOICE_TYPE, true);
         }
 
         if ($grid instanceof Mage_Adminhtml_Block_Cms_Page_Grid) {
@@ -99,6 +104,64 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
         /** @var Mage_Customer_Model_Resource_Customer_Collection */
         if ($collection instanceof Mage_Customer_Model_Resource_Customer_Collection) {
             $this->_addAttributeToCollection($collection, Okaeli_Grids_Helper_Config::CUSTOMER_TYPE);
+        }
+    }
+
+    /**
+     * Join order grid with order table
+     * @param Varien_Event_Observer $observer
+     */
+    public function beforeOrderGridCollectionLoad(Varien_Event_Observer $observer)
+    {
+        $collection = $observer->getOrderGridCollection();
+        if (!isset($collection)) {
+            return;
+        }
+
+        $helper = $this->_getHelper();
+        if ($helper->isEnabled(Okaeli_Grids_Helper_Config::ORDER_TYPE)) {
+            $orderGridFields = $helper->getFieldsFromTable('sales/order_grid');
+            $orderFields = $helper->getFieldsFromTable(self::TABLE_ALIAS_ORDER);
+            $fieldsToJoin = array_keys(array_diff_key($orderFields, $orderGridFields));
+            $arrayForJoin = array();
+            foreach ($fieldsToJoin as $fieldToJoin) {
+                $arrayForJoin[$fieldToJoin] = 'so.' . $fieldToJoin;
+            }
+
+            $collection->getSelect()->joinLeft(
+                array('so' => $collection->getTable(self::TABLE_ALIAS_ORDER)),
+                'so.increment_id = main_table.increment_id',
+                $arrayForJoin
+            );
+        }
+    }
+
+    /**
+     * Join invoice grid with invoice table
+     * @param Varien_Event_Observer $observer
+     */
+    public function beforeInvoiceGridCollectionLoad(Varien_Event_Observer $observer)
+    {
+        $collection = $observer->getOrderInvoiceGridCollection();
+        if (!isset($collection)) {
+            return;
+        }
+
+        $helper = $this->_getHelper();
+        if ($helper->isEnabled(Okaeli_Grids_Helper_Config::INVOICE_TYPE)) {
+            $invoiceGridFields = $helper->getFieldsFromTable('sales/invoice_grid');
+            $invoiceFields = $helper->getFieldsFromTable(self::TABLE_ALIAS_INVOICE);
+            $fieldsToJoin = array_keys(array_diff_key($invoiceFields, $invoiceGridFields));
+            $arrayForJoin = array();
+            foreach ($fieldsToJoin as $fieldToJoin) {
+                $arrayForJoin[$fieldToJoin] = 'si.' . $fieldToJoin;
+            }
+
+            $collection->getSelect()->joinLeft(
+                array('si' => $collection->getTable(self::TABLE_ALIAS_INVOICE)),
+                'si.order_id = main_table.order_id',
+                $arrayForJoin
+            );
         }
     }
 
@@ -259,6 +322,9 @@ class Okaeli_Grids_Model_Observer extends Mage_Core_Model_Observer
                     break;
                 case Okaeli_Grids_Helper_Config::SUBSCRIBER_TYPE:
                     $tableAlias = self::TABLE_ALIAS_SUBSCRIBER;
+                    break;
+                case Okaeli_Grids_Helper_Config::INVOICE_TYPE:
+                    $tableAlias = self::TABLE_ALIAS_INVOICE;
                     break;
                 default:
                     $tableAlias = false;

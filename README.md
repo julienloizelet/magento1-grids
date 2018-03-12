@@ -11,7 +11,7 @@
   
 ```
 
-> How many times how you been asked to add some field in a grid ?
+> How many times have you been asked to add some field in a grid ?
 > If your answer is _"too many times"_, then you may give a try to this extension.
 
 **Table of Contents**
@@ -43,7 +43,7 @@ Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
 
 `Okaeli_Grids` is a Magento 1 extension that allows to add column(s) in grid(s) after a specified column.
 
-Available grids are `product`, `order`, `customer`, `cms page`, `cms block` and `newsletter subscriber` grids.
+Available grids are `product`, `order`, `invoice`, `customer`, `cms page`, `cms block` and `newsletter subscriber` grids.
 
 Available new fields are the attributes of the model concerned by the grid.
 
@@ -86,6 +86,9 @@ This extension comes with some configurations :
   * **_Order_**
     * Enable / Disable Order Grid Feature
     * Column(s) settings
+  * **_Invoice_**
+      * Enable / Disable Invoice Grid Feature
+      * Column(s) settings
   * **_Cms Page_**
     * Enable / Disable Cms Page Grid Feature
     * Column(s) settings
@@ -175,6 +178,9 @@ This extension is **0 rewrite**  guaranteed. The following events are listened:
 
   * `core_block_abstract_to_html_before` : used to add column to grid.
   * `eav_collection_abstract_load_before` : used to add attributes to eav model collection (`product` and `customer`).
+  * `sales_order_grid_collection_load_before` : used to join order grid table with order table.
+  * `sales_order_invoice_grid_collection_load_before` : used to join invoice grid table with invoice table.
+
 
 ### Extension events
 
